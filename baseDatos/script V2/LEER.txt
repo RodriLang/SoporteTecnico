@@ -1,0 +1,1 @@
+El script fue creado desde Workbench 8.0 utilizando MySQL 8.2
