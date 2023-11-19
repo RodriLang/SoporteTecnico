@@ -2,8 +2,9 @@ package clases;
 
 
 import java.util.List;
+import lombok.Data;
 
-public class Tecnico {
+public @Data class Tecnico {
 
     private String nombre;
 

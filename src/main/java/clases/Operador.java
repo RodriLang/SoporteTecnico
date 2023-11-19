@@ -1,8 +1,10 @@
 package clases;
 
+import lombok.Data;
 
 
-public class Operador {
+
+public @Data class Operador {
 String nombre;
 int numLegajo;
 Area area;
@@ -36,3 +38,5 @@ Area area;
     }
 
 }
+
+

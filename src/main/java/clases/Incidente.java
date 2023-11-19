@@ -2,8 +2,9 @@ package clases;
 
 import java.time.LocalDate;
 import java.util.List;
+import lombok.Data;
 
-public class Incidente {
+public @Data class Incidente {
 
     private Cliente cliente;
 

@@ -3,8 +3,9 @@ package clases;
 
 
 import java.util.List;
+import lombok.Data;
 
-public class Servicio {
+public @Data class Servicio {
 
     private TipoAplicacion aplicacion;
 
