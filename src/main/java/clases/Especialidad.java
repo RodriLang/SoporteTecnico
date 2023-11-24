@@ -10,8 +10,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -34,25 +32,13 @@ import lombok.ToString;
 @ToString
 
 @Entity
-@Table(name = "tecnico")
-public class Tecnico {
+@Table(name = "especialidad")
+public class Especialidad {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    @Column(nullable = false, unique = true)
-    private int matricula;
-    @Column(nullable = false, unique = true)
-    private int dni;
     @Column(length = 45, nullable = false)
-    private String apellido;
-    @Column(length = 45, nullable = false)
-    private String nombre;
-    @Column(nullable = false)
-    private boolean estado;
-    @ManyToMany
-    @JoinTable(name = "tecnico_especialidad",
-            joinColumns = @JoinColumn(name = "idTecnico"),
-            inverseJoinColumns = @JoinColumn(name = "idEspecialidad")
-    )
-    private List<Especialidad> especialidades;
+    private String nombre; //posible ENUM
+    @ManyToMany(mappedBy = "especialidades")
+    private List<Tecnico> tecnicos;
 }
