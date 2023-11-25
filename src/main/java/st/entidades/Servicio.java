@@ -2,17 +2,24 @@ package st.entidades;
 
 
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import st.entidades.enumerados.TipoProblema;
 import st.entidades.enumerados.SistemaOperativo;
-import st.entidades.enumerados.Aplicacion;
 import java.util.List;
 import lombok.Data;
 
-public @Data class Servicio {
+@Entity
+public @Data
+class Servicio {
 
-    private Aplicacion aplicacion;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
 
     private SistemaOperativo sistema;
-
     private List<TipoProblema> problemas;
 }

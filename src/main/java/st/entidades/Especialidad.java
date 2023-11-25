@@ -51,5 +51,5 @@ public class Especialidad {
     @JoinTable(name = "especialidad_tipoProblema",
             joinColumns = @JoinColumn(name = "especialidad_id"),
             inverseJoinColumns = @JoinColumn(name = "tipoProblema_id"))
-    private List<Tipo_Problema> tiposProblemas;
+    private List<Problema> tiposProblemas;
 }

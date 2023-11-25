@@ -34,7 +34,7 @@ import st.entidades.enumerados.TipoProblema;
 
 @Entity
 @Table(name = "tipo_problema")
-public class Tipo_Problema {
+public class Problema {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;

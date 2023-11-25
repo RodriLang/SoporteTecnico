@@ -18,6 +18,6 @@ public class Test {
 //        
 //        tecnicoRI.add(t1);
 
-        System.out.println(tecnicoRI.get(1).getDni());
+   //     System.out.println(tecnicoRI.get(1).getDni());
     }
 }
