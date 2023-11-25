@@ -7,13 +7,13 @@
  <persistence-unit name="JPA_PU" transaction-type="RESOURCE_LOCAL">
  <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
  <exclude-unlisted-classes>false</exclude-unlisted-classes>
-   <properties>
+ <properties>
  <property name="jakarta.persistence.jdbc.url" value="jdbc:mariadb://localhost:3306/prueba_orm?zeroDateTimeBehavior=convertToNull&amp;serverTimezone=UTC"/>
  <property name="jakarta.persistence.jdbc.user" value="root"/>
  <property name="jakarta.persistence.jdbc.driver" value="org.mariadb.jdbc.Driver"/>
  <property name="jakarta.persistence.jdbc.password" value=""/>
 <!-- las siguientes propiedades utilizarlas solo en ambientes de testing -->
- <property name="hibernate.hbm2ddl.auto" value="create"/>
+ <property name="hibernate.hbm2ddl.auto" value="none"/>
  <property name="hibernate.show_sql" value="true"/>
  </properties>
  </persistence-unit>

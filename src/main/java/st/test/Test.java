@@ -8,14 +8,16 @@ public class Test {
     public static void main(String[] args) {
         TecnicoRImplement tecnicoRI = new TecnicoRImplement();
         
-        Tecnico t1 = Tecnico.builder()
-                .matricula(76767)
-                .dni(30444555)
-                .apellido("Gimenez")
-                .nombre("Julia")
-                .estado(true)
-                .build();
-        
-        tecnicoRI.add(t1);
+//        Tecnico t1 = Tecnico.builder()
+//                .matricula(76768)
+//                .dni(30444556)
+//                .apellido("Imenez")
+//                .nombre("Julio")
+//                .estado(true)
+//                .build();
+//        
+//        tecnicoRI.add(t1);
+
+        System.out.println(tecnicoRI.get(1).getDni());
     }
 }

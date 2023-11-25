@@ -5,7 +5,6 @@
 package st.daos.transacciones;
 
 import java.util.List;
-import jakarta.persistence.EntityManager;
 
 /**
  *
