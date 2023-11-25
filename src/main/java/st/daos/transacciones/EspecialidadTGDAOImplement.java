@@ -11,7 +11,7 @@ import jakarta.persistence.Persistence;
 import st.entidades.Especialidad;
 import st.entidades.Tecnico;
 import st.daos.factories.PersistenciaDAOFactory;
-import st.daos.persistencia.PersistenciaGenericaDAO;
+import st.daos.consultas.ConsultaGenericaDAO;
 
 /**
  *
@@ -19,7 +19,7 @@ import st.daos.persistencia.PersistenciaGenericaDAO;
  */
 public class EspecialidadTGDAOImplement implements TransaccionGenericaDAO<Especialidad, Integer> {
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("JPA_PU");
-    private PersistenciaGenericaDAO genericoDAO;
+    private ConsultaGenericaDAO genericoDAO;
 //    private TecnicoDAO tecnicoDAO;
     
     public EspecialidadTGDAOImplement(){

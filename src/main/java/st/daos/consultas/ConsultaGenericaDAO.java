@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
-package st.daos.persistencia;
+package st.daos.consultas;
 
 import java.util.List;
 import jakarta.persistence.EntityManager;
@@ -13,7 +13,7 @@ import jakarta.persistence.EntityManager;
  * @param <T> Clase que corresponde al modelo del dao
  * @param <V> Tipo de dato del id del modelo
  */
-public interface PersistenciaGenericaDAO<T, V> {
+public interface ConsultaGenericaDAO<T, V> {
     /**
      * @param model objeto que guardará
      * @return true si se creó el registro, false si falló

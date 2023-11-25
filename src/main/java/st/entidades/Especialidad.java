@@ -12,6 +12,8 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -45,4 +47,9 @@ public class Especialidad {
     private NombreEspecialidad nombre; //posible ENUM
     @ManyToMany(mappedBy = "especialidades")
     private List<Tecnico> tecnicos;
+    @ManyToMany
+    @JoinTable(name = "especialidad_tipoProblema",
+            joinColumns = @JoinColumn(name = "especialidad_id"),
+            inverseJoinColumns = @JoinColumn(name = "tipoProblema_id"))
+    private List<Tipo_Problema> tiposProblemas;
 }

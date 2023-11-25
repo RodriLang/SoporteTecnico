@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package st.daos.persistencia;
+package st.daos.consultas;
 
 import java.util.List;
 import jakarta.persistence.EntityManager;
@@ -12,7 +12,7 @@ import st.entidades.Tecnico;
  *
  * @author Matías Pacheco
  */
-public class TecnicoPGDAOImplement implements PersistenciaGenericaDAO<Tecnico, Integer> {
+public class TecnicoCGDAOImplement implements ConsultaGenericaDAO<Tecnico, Integer> {
     private EntityManager em;
 
     @Override

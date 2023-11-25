@@ -4,20 +4,20 @@
  */
 package st.daos.factories;
 
-import st.daos.persistencia.EspecialidadPGDAOImplement;
-import st.daos.persistencia.TecnicoPGDAOImplement;
-import st.daos.persistencia.PersistenciaGenericaDAO;
+import st.daos.consultas.EspecialidadCGDAOImplement;
+import st.daos.consultas.TecnicoCGDAOImplement;
+import st.daos.consultas.ConsultaGenericaDAO;
 
 /**
  *
  * @author Matías Pacheco
  */
 public class PersistenciaDAOFactory {
-    public static PersistenciaGenericaDAO getTecnicoDAO(){
-        return new TecnicoPGDAOImplement();
+    public static ConsultaGenericaDAO getTecnicoDAO(){
+        return new TecnicoCGDAOImplement();
     }
     
-    public static PersistenciaGenericaDAO getEspecialidadDAO(){
-        return new EspecialidadPGDAOImplement();
+    public static ConsultaGenericaDAO getEspecialidadDAO(){
+        return new EspecialidadCGDAOImplement();
     }
 }

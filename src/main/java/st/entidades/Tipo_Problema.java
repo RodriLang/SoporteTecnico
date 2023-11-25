@@ -4,11 +4,43 @@
  */
 package st.entidades;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.Table;
+import java.util.List;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+import st.entidades.enumerados.TipoProblema;
+
 /**
  *
  * @author Matías Pacheco
  */
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@ToString
+
+@Entity
+@Table(name = "tipo_problema")
 public class Tipo_Problema {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    private String tipo; //posible ENUM
+    @Enumerated(EnumType.STRING)
+    @Column(length = 45, nullable = false)
+    private TipoProblema tipo; //posible ENUM
+    @ManyToMany(mappedBy = "tiposProblemas")
+    private List<Especialidad> especialidades;
 }
