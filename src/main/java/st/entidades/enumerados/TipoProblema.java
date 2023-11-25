@@ -3,6 +3,5 @@ package st.entidades.enumerados;
 
 
 public enum TipoProblema {
-
     INSTALACION, ACTUALIZACION, CONEXION_BASE_DATOS, PASSWORD, USUARIO, LICENCIA, OTROS_PROBLEMAS, ERROR_EJECUCION
 }

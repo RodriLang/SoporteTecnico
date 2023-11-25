@@ -5,19 +5,22 @@
 package st.entidades;
 
 import java.util.List;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import st.entidades.enumerados.NombreEspecialidad;
 
 /**
  *
@@ -37,8 +40,9 @@ public class Especialidad {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+    @Enumerated(EnumType.STRING)
     @Column(length = 45, nullable = false)
-    private String nombre; //posible ENUM
+    private NombreEspecialidad nombre; //posible ENUM
     @ManyToMany(mappedBy = "especialidades")
     private List<Tecnico> tecnicos;
 }
