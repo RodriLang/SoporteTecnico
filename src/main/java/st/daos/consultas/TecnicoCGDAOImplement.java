@@ -6,6 +6,7 @@ package st.daos.consultas;
 
 import java.util.List;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
 import st.entidades.Tecnico;
 
 /**
@@ -40,7 +41,8 @@ public class TecnicoCGDAOImplement implements ConsultaGenericaDAO<Tecnico, Integ
 
     @Override
     public List<Tecnico> readRecords() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        TypedQuery<Tecnico> query = em.createQuery("SELECT e FROM MiEntidad e", Tecnico.class);
+        return query.getResultList();
     }
 
     @Override
