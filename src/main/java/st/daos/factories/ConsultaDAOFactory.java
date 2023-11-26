@@ -12,12 +12,12 @@ import st.daos.consultas.ConsultaGenericaDAO;
  *
  * @author Matías Pacheco
  */
-public class PersistenciaDAOFactory {
-    public static ConsultaGenericaDAO getTecnicoDAO(){
+public class ConsultaDAOFactory {
+    public static TecnicoCGDAOImplement getTecnicoCGDAOI(){
         return new TecnicoCGDAOImplement();
     }
     
-    public static ConsultaGenericaDAO getEspecialidadDAO(){
+    public static EspecialidadCGDAOImplement getEspecialidadCGDAOI(){
         return new EspecialidadCGDAOImplement();
     }
 }

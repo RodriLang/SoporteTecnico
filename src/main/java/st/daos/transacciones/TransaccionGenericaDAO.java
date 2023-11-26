@@ -16,6 +16,6 @@ public interface TransaccionGenericaDAO<T, V> {
     public boolean create(T model);
     public T read(V idModel);
     public boolean update(T model);
-    public boolean remove(V idModel);
+    public boolean delete(V idModel);
     public List<T> readRecords();
 }

@@ -13,11 +13,11 @@ import st.daos.transacciones.TransaccionGenericaDAO;
  * @author Matías Pacheco
  */
 public class TransaccionDAOFactory {
-    public static TransaccionGenericaDAO getTecnicoDAO(){
+    public static TecnicoTGDAOImplement getTecnicoDAO(){
         return new TecnicoTGDAOImplement();
     }
     
-    public static TransaccionGenericaDAO getEspecialidadDAO(){
+    public static EspecialidadTGDAOImplement getEspecialidadTGDAOI(){
         return new EspecialidadTGDAOImplement();
     }
 }

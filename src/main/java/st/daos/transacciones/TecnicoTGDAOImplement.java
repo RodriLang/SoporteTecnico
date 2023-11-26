@@ -9,26 +9,27 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import st.entidades.Tecnico;
-import st.daos.factories.PersistenciaDAOFactory;
-import st.daos.consultas.ConsultaGenericaDAO;
+import st.daos.factories.ConsultaDAOFactory;
+import st.daos.consultas.TecnicoCGDAOImplement;
+import st.entidades.Especialidad;
 
 /**
  *
  * @author Matías Pacheco
  */
 public class TecnicoTGDAOImplement implements TransaccionGenericaDAO<Tecnico, Integer> {
-    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("JPA_PU");
-    private ConsultaGenericaDAO persistenciaGenDAO;
+    private final EntityManagerFactory emf = Persistence.createEntityManagerFactory("JPA_PU");
+    private TecnicoCGDAOImplement tecConsultaGDAOI;
 //    private EspecialidadDAO especialidadDAO;
     
     public TecnicoTGDAOImplement(){
-        this.persistenciaGenDAO = PersistenciaDAOFactory.getTecnicoDAO();
-//        this.especialidadDAO = PersistenciaDAOFactory.getEspecialidadDAO();
+        this.tecConsultaGDAOI = ConsultaDAOFactory.getTecnicoCGDAOI();
+//        this.especialidadDAO = ConsultaDAOFactory.getEspecialidadCGDAOI();
     }
     
     private EntityManager obtenerEntityManagerConfigurado(){
         EntityManager em = emf.createEntityManager();
-        persistenciaGenDAO.setEntityManager(em);
+        tecConsultaGDAOI.setEntityManager(em);
 //        especialidadDAO.setEntityManager(em);
         return em;
     }
@@ -37,7 +38,7 @@ public class TecnicoTGDAOImplement implements TransaccionGenericaDAO<Tecnico, In
     public boolean create(Tecnico model) {
         EntityManager em = obtenerEntityManagerConfigurado();
         em.getTransaction().begin();
-        persistenciaGenDAO.create(model);
+        tecConsultaGDAOI.create(model);
         em.getTransaction().commit();
         em.close();
         return true;
@@ -47,7 +48,7 @@ public class TecnicoTGDAOImplement implements TransaccionGenericaDAO<Tecnico, In
     public Tecnico read(Integer idModel) {
         EntityManager em = obtenerEntityManagerConfigurado();
         em.getTransaction().begin();
-        Tecnico tecnico = (Tecnico)persistenciaGenDAO.read(idModel);
+        Tecnico tecnico = tecConsultaGDAOI.read(idModel);
         em.getTransaction().commit();
         em.close();
         return tecnico;
@@ -57,18 +58,18 @@ public class TecnicoTGDAOImplement implements TransaccionGenericaDAO<Tecnico, In
     public boolean update(Tecnico model) {
         EntityManager em = obtenerEntityManagerConfigurado();
         em.getTransaction().begin();
-        persistenciaGenDAO.update(model);
+        tecConsultaGDAOI.update(model);
         em.getTransaction().commit();
         em.close();
         return true;
     }
 
     @Override
-    public boolean remove(Integer idModel) {
+    public boolean delete(Integer idModel) {
         EntityManager em = obtenerEntityManagerConfigurado();
         em.getTransaction().begin();
-        Tecnico tecnico = (Tecnico)persistenciaGenDAO.read(idModel);
-        persistenciaGenDAO.delete(tecnico);
+        Tecnico tecnico = tecConsultaGDAOI.read(idModel);
+        tecConsultaGDAOI.delete(tecnico);
         em.getTransaction().commit();
         em.close();
         return true;
@@ -76,6 +77,22 @@ public class TecnicoTGDAOImplement implements TransaccionGenericaDAO<Tecnico, In
 
     @Override
     public List<Tecnico> readRecords() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        EntityManager em = obtenerEntityManagerConfigurado();
+        em.getTransaction().begin();
+        List<Tecnico> registro = tecConsultaGDAOI.readRecords();
+        em.getTransaction().commit();
+        em.close();
+        return registro;
+    }
+    
+    public List<Especialidad> readEspecialidades(){
+        EntityManager em = obtenerEntityManagerConfigurado();
+        em.getTransaction().begin();
+//        TecnicoCGDAOImplement tec = new TecnicoCGDAOImplement();
+//        tec.setEntityManager(em);
+        List<Especialidad> registro = tecConsultaGDAOI.readEspecialidades();
+        em.getTransaction().commit();
+        em.close();
+        return registro;
     }
 }

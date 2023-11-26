@@ -6,7 +6,8 @@ package st.repositorios;
 
 import java.util.List;
 import st.daos.factories.TransaccionDAOFactory;
-import st.daos.transacciones.TransaccionGenericaDAO;
+import st.daos.transacciones.TecnicoTGDAOImplement;
+import st.entidades.Especialidad;
 import st.entidades.Tecnico;
 
 /**
@@ -14,34 +15,38 @@ import st.entidades.Tecnico;
  * @author Matías Pacheco
  */
 public class TecnicoRImplement implements GenericoRepositorio<Tecnico, Integer>{
-    private TransaccionGenericaDAO transaccionGenDAO;
+    private TecnicoTGDAOImplement tecTransaccionGDAOI;
     
     public TecnicoRImplement(){
-        this.transaccionGenDAO = TransaccionDAOFactory.getTecnicoDAO();
+        this.tecTransaccionGDAOI = TransaccionDAOFactory.getTecnicoDAO();
     }
     
     @Override
     public void add(Tecnico model) {
-        transaccionGenDAO.create(model);
+        tecTransaccionGDAOI.create(model);
     }
 
     @Override
     public Tecnico get(Integer idModel) {
-        return (Tecnico)transaccionGenDAO.read(idModel);
+        return (Tecnico)tecTransaccionGDAOI.read(idModel);
     }
 
     @Override
     public void update(Tecnico model) {
-        transaccionGenDAO.update(model);
+        tecTransaccionGDAOI.update(model);
     }
 
     @Override
     public void remove(Integer idModel) {
-        transaccionGenDAO.remove(idModel);
+        tecTransaccionGDAOI.delete(idModel);
     }
 
     @Override
     public List<Tecnico> getModels() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return tecTransaccionGDAOI.readRecords();
+    }
+    
+    public List<Especialidad> getEspecialidades(){
+        return tecTransaccionGDAOI.readEspecialidades();
     }
 }

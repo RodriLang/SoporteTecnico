@@ -42,12 +42,19 @@ public class EspecialidadCGDAOImplement implements ConsultaGenericaDAO<Especiali
 
     @Override
     public List<Especialidad> readRecords() {
-      TypedQuery<Especialidad> query = em.createQuery("SELECT e FROM MiEntidad e", Especialidad.class);
-        return query.getResultList();
+        TypedQuery<Especialidad> consulta = em.createQuery("SELECT e FROM Especialidad e", Especialidad.class);
+        return consulta.getResultList();
     }
 
     @Override
     public void setEntityManager(EntityManager em) {
         this.em = em;
+    }
+    
+    public List<Tecnico> readTecnicos(){
+        TypedQuery<Tecnico> consulta = em.createQuery("SELECT t FROM Tecnico t JOIN t.especialidades e WHERE e.id = :idEspecialidad", 
+                Tecnico.class);
+        consulta.setParameter("idEspecialidad", 1);
+        return consulta.getResultList();
     }
 }

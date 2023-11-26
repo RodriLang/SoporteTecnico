@@ -7,6 +7,7 @@ package st.daos.consultas;
 import java.util.List;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
+import st.entidades.Especialidad;
 import st.entidades.Tecnico;
 
 /**
@@ -41,12 +42,19 @@ public class TecnicoCGDAOImplement implements ConsultaGenericaDAO<Tecnico, Integ
 
     @Override
     public List<Tecnico> readRecords() {
-        TypedQuery<Tecnico> query = em.createQuery("SELECT e FROM MiEntidad e", Tecnico.class);
-        return query.getResultList();
+        TypedQuery<Tecnico> consulta = em.createQuery("SELECT t FROM Tecnico t", Tecnico.class);
+        return consulta.getResultList();
     }
 
     @Override
     public void setEntityManager(EntityManager em) {
         this.em = em;
+    }
+    
+    public List<Especialidad> readEspecialidades(){
+        TypedQuery<Especialidad> consulta = em.createQuery("SELECT e FROM Especialidad e JOIN e.tecnicos t WHERE t.id = :idTecnico", 
+                Especialidad.class);
+        consulta.setParameter("idTecnico", 1);
+        return consulta.getResultList();
     }
 }

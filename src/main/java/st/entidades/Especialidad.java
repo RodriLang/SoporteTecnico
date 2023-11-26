@@ -45,8 +45,8 @@ public class Especialidad {
     @Enumerated(EnumType.STRING)
     @Column(length = 45, nullable = false)
     private NombreEspecialidad nombre; //posible ENUM
-    @ManyToMany(mappedBy = "especialidades")
-    private List<Tecnico> tecnicos;
+//    @ManyToMany(mappedBy = "especialidades")
+//    private List<Tecnico> tecnicos;
     @ManyToMany
     @JoinTable(name = "especialidad_tipoProblema",
             joinColumns = @JoinColumn(name = "especialidad_id"),

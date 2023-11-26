@@ -10,8 +10,9 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import st.entidades.Especialidad;
 import st.entidades.Tecnico;
-import st.daos.factories.PersistenciaDAOFactory;
+import st.daos.factories.ConsultaDAOFactory;
 import st.daos.consultas.ConsultaGenericaDAO;
+import st.daos.consultas.EspecialidadCGDAOImplement;
 
 /**
  *
@@ -19,17 +20,17 @@ import st.daos.consultas.ConsultaGenericaDAO;
  */
 public class EspecialidadTGDAOImplement implements TransaccionGenericaDAO<Especialidad, Integer> {
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("JPA_PU");
-    private ConsultaGenericaDAO genericoDAO;
+    private EspecialidadCGDAOImplement espConsultaGDAOI;
 //    private TecnicoDAO tecnicoDAO;
     
     public EspecialidadTGDAOImplement(){
-        this.genericoDAO = PersistenciaDAOFactory.getEspecialidadDAO();
-//        this.tecnicoDAO = PersistenciaDAOFactory.getTecnicoDAO();
+        this.espConsultaGDAOI = ConsultaDAOFactory.getEspecialidadCGDAOI();
+//        this.tecnicoDAO = ConsultaDAOFactory.getTecnicoCGDAOI();
     }
     
     private EntityManager obtenerEntityManagerConfigurado(){
         EntityManager em = emf.createEntityManager();
-        genericoDAO.setEntityManager(em);
+        espConsultaGDAOI.setEntityManager(em);
 //        tecnicoDAO.setEntityManager(em);
         return em;
     }
@@ -38,7 +39,7 @@ public class EspecialidadTGDAOImplement implements TransaccionGenericaDAO<Especi
     public boolean create(Especialidad model) {
         EntityManager em = obtenerEntityManagerConfigurado();
         em.getTransaction().begin();
-        genericoDAO.create(model);
+        espConsultaGDAOI.create(model);
         em.getTransaction().commit();
         em.close();
         return true;
@@ -48,7 +49,7 @@ public class EspecialidadTGDAOImplement implements TransaccionGenericaDAO<Especi
     public Especialidad read(Integer idmodel) {
         EntityManager em = obtenerEntityManagerConfigurado();
         em.getTransaction().begin();
-        Especialidad especialidad = (Especialidad)genericoDAO.read(idmodel);
+        Especialidad especialidad = (Especialidad)espConsultaGDAOI.read(idmodel);
         em.getTransaction().commit();
         em.close();
         return especialidad;
@@ -58,18 +59,18 @@ public class EspecialidadTGDAOImplement implements TransaccionGenericaDAO<Especi
     public boolean update(Especialidad model) {
         EntityManager em = obtenerEntityManagerConfigurado();
         em.getTransaction().begin();
-        genericoDAO.update(model);
+        espConsultaGDAOI.update(model);
         em.getTransaction().commit();
         em.close();
         return true;
     }
 
     @Override
-    public boolean remove(Integer idModel) {
+    public boolean delete(Integer idModel) {
         EntityManager em = obtenerEntityManagerConfigurado();
         em.getTransaction().begin();
-        Especialidad especialidad = (Especialidad)genericoDAO.read(idModel);
-        genericoDAO.delete(especialidad);
+        Especialidad especialidad = (Especialidad)espConsultaGDAOI.read(idModel);
+        espConsultaGDAOI.delete(especialidad);
         em.getTransaction().commit();
         em.close();
         return true;
@@ -77,6 +78,20 @@ public class EspecialidadTGDAOImplement implements TransaccionGenericaDAO<Especi
 
     @Override
     public List<Especialidad> readRecords() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        EntityManager em = obtenerEntityManagerConfigurado();
+        em.getTransaction().begin();
+        List<Especialidad> registro = espConsultaGDAOI.readRecords();
+        em.getTransaction().commit();
+        em.close();
+        return registro;
+    }
+    
+    public List<Tecnico> readTecnicos(){
+        EntityManager em = obtenerEntityManagerConfigurado();
+        em.getTransaction().begin();
+        List<Tecnico> registro = espConsultaGDAOI.readTecnicos();
+        em.getTransaction().commit();
+        em.close();
+        return registro;
     }
 }
