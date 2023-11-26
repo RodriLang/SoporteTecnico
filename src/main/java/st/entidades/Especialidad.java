@@ -34,7 +34,7 @@ import st.entidades.enumerados.NombreEspecialidad;
 @NoArgsConstructor
 @Getter
 @Setter
-@ToString
+@ToString(of = {"id", "nombre"})
 
 @Entity
 @Table(name = "especialidad")
@@ -45,11 +45,11 @@ public class Especialidad {
     @Enumerated(EnumType.STRING)
     @Column(length = 45, nullable = false)
     private NombreEspecialidad nombre; //posible ENUM
-//    @ManyToMany(mappedBy = "especialidades")
-//    private List<Tecnico> tecnicos;
+    @ManyToMany(mappedBy = "especialidades")
+    private List<Tecnico> tecnicos;
     @ManyToMany
-    @JoinTable(name = "especialidad_tipoProblema",
+    @JoinTable(name = "especialidad_problema",
             joinColumns = @JoinColumn(name = "especialidad_id"),
-            inverseJoinColumns = @JoinColumn(name = "tipoProblema_id"))
-    private List<Problema> tiposProblemas;
+            inverseJoinColumns = @JoinColumn(name = "problema_id"))
+    private List<Problema> problemas;
 }

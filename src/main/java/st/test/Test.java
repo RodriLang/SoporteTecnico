@@ -1,5 +1,6 @@
 package st.test;
 
+import java.util.List;
 import st.entidades.Especialidad;
 import st.entidades.Tecnico;
 import st.repositorios.TecnicoRImplement;
@@ -20,17 +21,20 @@ public class Test {
 //        tecnicoRI.add(t1);
 
    //     System.out.println(tecnicoRI.get(1).getDni());
-        Especialidad e1 = Especialidad.builder()
-                
-                .build();
+//        Especialidad e1 = Especialidad.builder()
+//                
+//                .build();
    
-        Tecnico t1 = Tecnico.builder()
-                .matricula(0)
-                .dni(0)
-                .apellido("")
-                .nombre("")
-                .estado(true)
-//                .especialidades()
-                .build();
+//        Tecnico t1 = Tecnico.builder()
+//                .matricula(0)
+//                .dni(0)
+//                .apellido("")
+//                .nombre("")
+//                .estado(true)
+////                .especialidades()
+//                .build();
+
+        List<Especialidad> registro = tecnicoRI.getEspecialidades();
+        registro.stream().forEach(System.out::println);
     }
 }

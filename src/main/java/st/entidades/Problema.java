@@ -30,10 +30,10 @@ import st.entidades.enumerados.TipoProblema;
 @NoArgsConstructor
 @Getter
 @Setter
-@ToString
+@ToString(exclude = "especialidades")
 
 @Entity
-@Table(name = "tipo_problema")
+@Table(name = "problema")
 public class Problema {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -41,6 +41,6 @@ public class Problema {
     @Enumerated(EnumType.STRING)
     @Column(length = 45, nullable = false)
     private TipoProblema tipo; //posible ENUM
-    @ManyToMany(mappedBy = "tiposProblemas")
+    @ManyToMany(mappedBy = "problemas")
     private List<Especialidad> especialidades;
 }

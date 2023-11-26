@@ -31,7 +31,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @Getter
 @Setter
-@ToString
+@ToString(exclude = "especialidades")
 
 @Entity
 @Table(name = "tecnico")
@@ -51,8 +51,8 @@ public class Tecnico {
     private boolean estado;
     @ManyToMany
     @JoinTable(name = "tecnico_especialidad",
-            joinColumns = @JoinColumn(name = "idTecnico"),
-            inverseJoinColumns = @JoinColumn(name = "idEspecialidad")
+            joinColumns = @JoinColumn(name = "tecnico_id"),
+            inverseJoinColumns = @JoinColumn(name = "especialidad_id")
     )
     private List<Especialidad> especialidades;
 }
